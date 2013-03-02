@@ -1,16 +1,16 @@
 package com.example.demodomparser;
 
+import java.util.Date;
 import java.util.Random;
 
-import android.text.format.Time;
 
 public class Alert {
 	private String description;
-	private Time eventTime;
+	private Date eventTime;
 	private AlertType alertType;
 	private Location location;
 
-	public Alert(String desciption, Time evenTime, AlertType alertType,
+	public Alert(String desciption, Date eventTime, AlertType alertType,
 			Location location) {
 		this.description = desciption;
 		this.eventTime = eventTime;		
@@ -30,11 +30,11 @@ public class Alert {
 		this.description = description;
 	}
 
-	public Time getEventTime() {
+	public Date getEventTime() {
 		return eventTime;
 	}
 
-	public void setEventTime(Time eventTime) {
+	public void setEventTime(Date eventTime) {
 		this.eventTime = eventTime;
 	}
 
@@ -55,10 +55,11 @@ public class Alert {
 	}
 	
 
+	@SuppressWarnings("deprecation")
 	public int createId() {
 		Random r = new Random();
-		return (eventTime.month + eventTime.monthDay + eventTime.weekDay
-				+ eventTime.hour + eventTime.minute + eventTime.second)
+		return (eventTime.getMonth() + eventTime.getDate() + eventTime.getDay()
+				+ eventTime.getHours() + eventTime.getHours() + eventTime.getSeconds())
 				* r.nextInt(100);
 	}
 }
