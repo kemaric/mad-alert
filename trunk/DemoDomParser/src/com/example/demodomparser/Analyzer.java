@@ -14,8 +14,10 @@ public class Analyzer {
 	 * much this module can do, just because the info from the xml isn't as detailed as 
 	 * we need it to be. For example, many of the descriptions don't indicate the 
 	 * incident time.
-	 */
-	
+	 */	
+
+	Date date_of_incident;
+	AlertType alert_type;
 	
 	
 	/*How is this getting the info from the DOM parser?
@@ -47,11 +49,7 @@ public class Analyzer {
 		Date retDate = new Date(yearInt, monthInt, dateInt, hourInt, minuteInt, secInt);
 		
 		return retDate;
-		
-		
-		
-		
-		
+
 		
 	}
 
@@ -159,4 +157,5 @@ public class Analyzer {
 		}
 		return null;
 	}
+	
 }
