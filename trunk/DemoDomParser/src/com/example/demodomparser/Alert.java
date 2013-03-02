@@ -5,7 +5,7 @@ import android.text.format.Time;
 public class Alert {
 	private String description;
 	private Time eventTime; 
-	private Integer alert_id;
+	private Integer alertId;
 	
 	
 }
