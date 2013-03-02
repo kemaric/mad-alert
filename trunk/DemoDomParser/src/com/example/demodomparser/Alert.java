@@ -15,6 +15,8 @@ public class Alert {
 		this.setAlertType(alertType);			
 	}
 
+	
+	
 	/**
 	 * @return the description
 	 */
