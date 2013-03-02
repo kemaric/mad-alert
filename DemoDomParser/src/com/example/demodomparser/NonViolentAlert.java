@@ -4,8 +4,12 @@ import android.text.format.Time;
 
 public class NonViolentAlert extends Alert {
 
-	public NonViolentAlert(String description, Time eventTime) {
-		super(description, eventTime);
+	public NonViolentAlert(String desciption, Time evenTime, Mode AlertType,
+			Location location) {
+		super(desciption, evenTime, AlertType, location);
+		// TODO Auto-generated constructor stub
 	}
+
+	
 
 }
