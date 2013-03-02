@@ -9,10 +9,10 @@ public class Alert {
 	private Mode alertType;
 
 	public Alert(String desciption, Time eventTime, Location location, Mode alertType) {
-		this.setDescription(desciption);
-		this.setEventTime(eventTime);
-		this.setLocation(location);
-		this.setAlertType(alertType);			
+		this.description = desciption;
+		this.eventTime = eventTime;
+		this.location = location;
+		this.alertType = alertType;			
 	}
 
 	
@@ -90,7 +90,7 @@ public class Alert {
 
 
 	public enum Mode{
-		Weather, Violent, NonViolent
+		Weather, NonViolent, Violent
 	}
 
 	public enum Location{
