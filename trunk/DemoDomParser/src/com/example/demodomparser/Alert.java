@@ -8,7 +8,7 @@ public class Alert {
 	private Mode AlertType;
 	private Location location;
 	
-	public Alert( String desciption, Time evenTime, Mode AlertType, Location location){
+	public Alert( String desciption, Time evenTime){
 		this.description=desciption;
 		this.eventTime=eventTime;
 		this.AlertType=AlertType;
