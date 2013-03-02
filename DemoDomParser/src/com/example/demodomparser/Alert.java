@@ -9,10 +9,10 @@ public class Alert {
 	private Location location;
 	
 	public Alert( String desciption, Time evenTime){
-		this.description=desciption;
-		this.eventTime=eventTime;
-		this.AlertType=AlertType;
-		this.location=location;				
+		this.description = desciption;
+		this.eventTime = eventTime;
+		this.AlertType = AlertType;
+		this.location = location;				
 	}
 	
 	
