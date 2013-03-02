@@ -1,13 +1,8 @@
 package com.example.demodomparser;
 
-import java.sql.Time;
+import android.annotation.SuppressLint;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import android.text.format.DateFormat;
 
 
 public class Analyzer {
@@ -21,8 +16,7 @@ public class Analyzer {
 	 * incident time.
 	 */
 	
-	Date date_of_incident;
-	Alert.Mode alert_type;
+	
 	
 	/*How is this getting the info from the DOM parser?
 	 * Work with Ely on communication between the modules*/
@@ -36,14 +30,7 @@ public class Analyzer {
 	 * 
 	 * */ 
 	public Date parseDate(String d) {
-		String dowRegex = "(Mon|Tue|Wed|Thu|Fri|Sat|Sun), ";//Day of the week
-		String dateRegex = "[0-9]{2} ";//Date
-		String monthRegex = "(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ";//Month
-		String yearRegex = "[0-9]{4}"; //Year
-		String timeRegex = "/d{2}:/d{2}:/d{2}";
-		
 		String[] splits = d.split("( |,)");
-		String dow = splits[0];
 		String dateNum = splits[1];
 		String month = splits[2];
 		String year = splits[3];
@@ -68,10 +55,12 @@ public class Analyzer {
 		
 	}
 
-	/*Takes the description string and returns which type of error it is.*/
-	public Alert.Mode parseMode(String description) {
-		/*These strings will be used to make the regexes so edit them if you want*/
+	/*Takes the description string and returns which type of error it is.
+	 * If none of the error words ocurred in the description, returns null*/
+	@SuppressLint("DefaultLocale")
+	public AlertType parseMode(String description) {
 		
+		description = description.toLowerCase();
 		ArrayList<String> violentAL = new ArrayList<String>();
 		ArrayList<String> nonViolentAL = new ArrayList<String>();	
 		ArrayList<String> weatherAL = new ArrayList<String>();
@@ -88,6 +77,8 @@ public class Analyzer {
 		nonViolentAL.add("stalk");
 		nonViolentAL.add("follow");
 		nonViolentAL.add("harass");
+		nonViolentAL.add("all clear");
+		nonViolentAL.add("arrest");
 		
 		weatherAL.add("tornado");
 		weatherAL.add("flood");
@@ -99,10 +90,20 @@ public class Analyzer {
 		
 		for (String curr: violentAL) {
 			if (description.contains(curr)) {
-				
+				return AlertType.VIOLENT;
 			}
 		}
-		return alert_type;
+		for (String curr: nonViolentAL) {
+			if (description.contains(curr)) {
+				return AlertType.NONVIOLENT;
+			}
+		}
+		for (String curr: weatherAL) {
+			if (description.contains(curr)) {
+				return AlertType.WEATHER;
+			}
+		}
+		return null;
 		
 	}
 	
@@ -147,5 +148,15 @@ public class Analyzer {
 		return monthInt;
 	}
 	
-	
+	/*Tries to determine whether or not the incident occurred on or off campus.
+	 * Returns an Location enum if it can, null otherwise.*/
+	public Location getLocation(String description) {
+		if (description.contains("on-campus")) {
+			return Location.ONCAMPUS;
+		}
+		if (description.contains("off-campus") || description.contains("off campus")) {
+			return Location.ONCAMPUS;
+		}
+		return null;
+	}
 }
