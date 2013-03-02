@@ -155,7 +155,7 @@ public class Analyzer {
 			return Location.ONCAMPUS;
 		}
 		if (description.contains("off-campus") || description.contains("off campus")) {
-			return Location.ONCAMPUS;
+			return Location.OFFCAMPUS;
 		}
 		return null;
 	}
