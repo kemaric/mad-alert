@@ -28,6 +28,10 @@
             android:name="com.example.demodomparser.LatestNewsActivity"
             android:label="@string/title_activity_latest_news" >
         </activity>
+        <activity
+            android:name="com.example.demodomparser.AlertOnClickActivity"
+            android:label="@string/title_activity_alert_on_click" >
+        </activity>
     </application>
 
 </manifest>
