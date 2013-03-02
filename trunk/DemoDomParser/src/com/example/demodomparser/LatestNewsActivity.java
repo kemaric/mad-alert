@@ -3,13 +3,19 @@ package com.example.demodomparser;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.ScrollView;
+
+import org.w3c.dom.*;
 
 public class LatestNewsActivity extends Activity {
 
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_latest_news);
+		final ScrollView list = (ScrollView) findViewById(R.id.scrollView1);
 	}
 
 	@Override
