@@ -9,6 +9,9 @@ public class Alert {
 	private Date eventTime;
 	private AlertType alertType;
 	private Location location;
+	
+	/** **/ 
+	private String link; //This is from the XML that 
 
 	public Alert(String desciption, Date eventTime, AlertType alertType,
 			Location location) {
@@ -16,11 +19,8 @@ public class Alert {
 		this.eventTime = eventTime;		
 		this.alertType = alertType;
 		this.location = location;
+		//this.link = link;
 	}
-	
-	
-	
-	
 
 	public String getDescription() {
 		return description;
