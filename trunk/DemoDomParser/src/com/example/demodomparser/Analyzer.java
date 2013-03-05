@@ -57,7 +57,8 @@ public class Analyzer {
 	 * If none of the error words ocurred in the description, returns null*/
 	@SuppressLint("DefaultLocale")
 	public AlertType parseMode(String description) {
-		
+		/**Push these on to the resources of the phone. Want to also have a 
+		 * static code block that loads in the buildings when the app is ran the first time. **/
 		description = description.toLowerCase();
 		ArrayList<String> violentAL = new ArrayList<String>();
 		ArrayList<String> nonViolentAL = new ArrayList<String>();	
@@ -157,5 +158,18 @@ public class Analyzer {
 		}
 		return null;
 	}
+	
+	/*Use this function to cut off that last two lines from the document.
+	 These last few lines contain the offier's info which doesnt matter. */
+	public void chopDescriptionTail(){
+		
+		
+	}
+	
+	/*Generate the Alert here instead of the main method. */
+	public Alert generateAlert(){
+		return  null;
+	}
+	
 	
 }
