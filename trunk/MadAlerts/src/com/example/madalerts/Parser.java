@@ -25,8 +25,11 @@ import org.xml.sax.SAXException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class Parser {
+public class Parser /* extends AsyncTask<>*/ {
 
+	private Parser() {
+		
+	}
 
 	public static  Document XMLfromURL(String url ){
 		
