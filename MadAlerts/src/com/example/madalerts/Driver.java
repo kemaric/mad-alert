@@ -9,17 +9,17 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
-
-
-
-
 public class Driver {
 
 	static ArrayList<Alert> Alertlist;
+	
+	private Driver (){
+		
+	}
 
-	public static ArrayList<Alert> loadFeed(){
+	public static ArrayList<Alert> loadFeed(String urlString){
 
-		Document dom = Parser.XMLfromURL("https://alert.umd.edu/rssfeed.php");
+		Document dom = Parser.XMLfromURL(urlString);
 		Element root = dom.getDocumentElement();
 		NodeList alertList = root.getElementsByTagName("item");
 
