@@ -5,4 +5,15 @@
     <string name="action_settings">Settings</string>
     <string name="alert_Url">https://alert.umd.edu/rssfeed.php</string>
 
+    <string-array name="weatherKeywords_array">
+        <item>weather</item>
+        <item>tornado</item>
+        <item>flood</item>
+        <item>wind</item>
+        <item>snow</item>
+        <item>hurricane</item>
+        <item>ice</item>
+        <item>icy</item>
+    </string-array>
+
 </resources>

@@ -2,45 +2,46 @@ package com.example.madalerts;
 
 import java.util.ArrayList;
 
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
-import android.webkit.WebView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
+
 
 public class MainActivity extends Activity {
-
-	public final String DEFAULT_RSS_URL= "https://alert.umd.edu/rssfeed.php";
-	private ListView listView;
-	private ArrayAdapter<String> adapter;
+	private final int LOAD_SAVED_ALERTS = 0;
+	private final int LOAD_NEW_ALERTS = 1;
+	private int feedValue =0 ; 
+	private boolean resumeHasRun = false;
+	
+	private Button btn;
 	private ArrayList<String> list = new ArrayList<String>();
 	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		// TextView t = (TextView) findViewById(R.id.textView1) ;
 
-		listView = (ListView) findViewById(R.id.listView1);
-
-		// Define a new Adapter
-		// First parameter - Context
-		// Second parameter - Layout for the row
-		// Third parameter - ID of the TextView to which the data is written
-		// Forth - the Array of data
-
-		// this creates a new AsyncTask to do the "heavy lifting" so our main ui
-		// thread does not slow down
-		new CreateAlerts().execute();
-
-		adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, android.R.id.text1, list);
 
 	}
+	
+
+	@Override
+	protected void onResume() {
+	    super.onResume();
+	    if (!resumeHasRun) {
+	        resumeHasRun = true;
+	        return;
+	    }
+	    btn = (Button)findViewById(R.id.newAlerts);
+		btn.setClickable(true);
+	   
+	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,27 +50,55 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	private class CreateAlerts extends AsyncTask<Void, Void, ArrayList<String>> {
+	public void ContactInfo(View v) {
+	
+	}
+
+	public void LoadSavedAlerts(View v) {
+		feedValue = LOAD_SAVED_ALERTS; 
+		
+	}
+
+	public void LoadNewAlerts(View v) {
+		btn = (Button)findViewById(R.id.newAlerts);
+		btn.setClickable(false);
+		feedValue = LOAD_NEW_ALERTS; 
+		new CreateAlerts().execute();
+//		Intent startList = new Intent(MainActivity.this,EventsList.class);
+//		/*this sends the arraylist that has the list of soro-
+//		 *rities to the sorority class */
+//		startActivity(startList);
+
+	}
+	
+	
+	private class CreateAlerts extends AsyncTask<Void, Void, Void> {
 
 		@Override
-		protected ArrayList<String> doInBackground(Void... params) {
+		protected Void doInBackground(Void... params) {
 			
-		
-			Driver.loadFeed(DEFAULT_RSS_URL);// creates the list of alerts and stores it in a
-								// static Array list
+		 if (feedValue==LOAD_NEW_ALERTS ){
+			Driver.loadFeed(getString(R.string.alert_Url));// creates the list of alerts and stores it in a
+		 }else if (feedValue==LOAD_SAVED_ALERTS){
+			 // set up database and load Driver.Alertlist with alerts in BD
+		 }
 
-			// loop through all Alerts and add the alert title to the list that will be appended to the list adapter
-			for (Alert a : Driver.Alertlist) {
-				list.add(a.getTitle());
-			}
-			return list;
+//			// loop through all Alerts and add the alert title to the list that will be appended to the list adapter
+//			for (Alert a : Driver.Alertlist) {
+//				list.add(a.getTitle());
+//			}
+			
+			
+			return null;
+		
 		}
 
-		protected void onPostExecute(ArrayList<String> list) {
-
-			// Assign adapter to ListView
-			listView.setAdapter(adapter);
-			listView.setOnItemClickListener(listView.getOnItemClickListener());
+		protected void onPostExecute(Void v) {
+			
+			Intent startList = new Intent(MainActivity.this,EventsList.class);
+			/*this sends the arraylist that has the list of soro-
+			 *rities to the sorority class */
+			startActivity(startList);
 
 		}
 	}
