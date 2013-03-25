@@ -1,9 +1,11 @@
 package com.example.madalerts;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,21 +27,36 @@ import org.xml.sax.SAXException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class Parser /* extends AsyncTask<>*/ {
+public class Parser  {
 
 	private Parser() {
-		
+
 	}
 
+
 	public static  Document XMLfromURL(String url ){
-		
+
 		try {
-			URL xmlUrl = new URL (url);
-			return XMLfromString(convertStreamToString(xmlUrl.openStream()));
+
+			//			URL url = new URL("ftp://mirror.csclub.uwaterloo.ca/index.html");   
+			//			URLConnection urlConnection = url.openConnection();   
+			//			InputStream in = new BufferedInputStream(urlConnection.getInputStream());   
+			//			try {     readStream(in);     }
+			//			
+			URL xmlURL = new URL (url);
+			URLConnection urlConnection = xmlURL.openConnection();
+
+			InputStream is = new BufferedInputStream(urlConnection.getInputStream());
+			is = xmlURL.openStream();
+			String xmlString = convertStreamToString(is);
+			Document result = XMLfromString(xmlString);
+			 is.close(); 
+			return result;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		return null;
 	}
 
@@ -48,14 +65,17 @@ public class Parser /* extends AsyncTask<>*/ {
 
 		Document doc = null;
 
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilderFactory dbf= null;
+
+		dbf = DocumentBuilderFactory.newInstance();
+
 		try {
 
 			DocumentBuilder db = dbf.newDocumentBuilder();
 
 			InputSource is = new InputSource();
 			is.setCharacterStream(new StringReader(xml));
-			doc = db.parse(is);
+			doc =db.parse(is);
 
 		} catch (ParserConfigurationException e) {
 			System.out.println("XML parse error: " + e.getMessage());
@@ -70,7 +90,7 @@ public class Parser /* extends AsyncTask<>*/ {
 
 		return doc;
 	}
-	
+
 	public static String convertStreamToString(InputStream is) throws IOException {
 		/*
 		 * To convert the InputStream to String we use the BufferedReader.readLine()
@@ -96,11 +116,12 @@ public class Parser /* extends AsyncTask<>*/ {
 
 		}
 	}
+
 	public static String getValue(Element item, String str) {  
 		NodeList n = item.getElementsByTagName(str);  
 		return getElementValue(n.item(0));
 	}
-	
+
 	public final static String getElementValue( Node elem ) {
 		Node kid;
 		if( elem != null){
@@ -114,6 +135,7 @@ public class Parser /* extends AsyncTask<>*/ {
 		}
 		return "";
 	}
+
 	public static String[] getTimeAndDescription(Element root, int index){
 		String[] ret = new String[2];
 		NodeList items = root.getElementsByTagName("item");
@@ -127,21 +149,21 @@ public class Parser /* extends AsyncTask<>*/ {
 		}
 		return null;
 	}
-	
+
 	public static Map<String, String> getAlertInfo(Element root, int index){
-		
+
 		Map<String,String> AletInfo = new HashMap<String,String>();
-		
+
 		NodeList items = root.getElementsByTagName("item");
 		if (items != null){
 			Element t = (Element)items.item(index);
 			if (t!=null){
-				
+
 				AletInfo.put("title", getValue(t, "title"));
 				AletInfo.put("pubDate", getValue(t, "pubDate"));
 				AletInfo.put("link", getValue(t, "link"));
 				AletInfo.put("description", getValue(t, "description"));
-		
+
 				return AletInfo;
 			}
 		}
