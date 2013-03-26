@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/savedAlerts"
         android:layout_marginTop="37dp"
-        android:text="Energency Contact Information" 
+        android:text="Emergency Contact Information" 
         android:onClick="ContactInfo"/>
 
     
