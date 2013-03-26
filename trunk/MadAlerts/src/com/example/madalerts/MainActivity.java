@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
 		btn.setClickable(true);
 		btn = (Button) findViewById(R.id.savedAlerts);
 		btn.setClickable(true);
-
+		
 
 	}
 
@@ -72,7 +72,10 @@ public class MainActivity extends Activity {
 	 * should start a new intent with UMD emergency contact info
 	 */
 	public void ContactInfo(View v) {
-
+		Intent startContactInfo = new Intent(MainActivity.this, ContactInfoActivity.class);
+		
+		startActivity(startContactInfo);
+		return;
 	}
 
 	/*button listener for Saved Alerts button
