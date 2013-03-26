@@ -15,5 +15,20 @@
         <item>ice</item>
         <item>icy</item>
     </string-array>
+    <string-array name="violentKeywords_array">
+        <item >break</item>
+        <item >stalk</item>
+        <item >follow</item>
+        <item >harass</item>
+    </string-array>
+    <string-array name="nonViolentKeywords_array">
+        <item >robbery</item>
+        <item >assault</item>
+        <item >armed</item>
+        <item >assault</item>
+        <item >murder</item>
+        <item >shooting</item>
+        <item >shot</item>
+    </string-array>
 
 </resources>
