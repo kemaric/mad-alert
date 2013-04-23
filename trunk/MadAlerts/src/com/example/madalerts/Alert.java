@@ -19,7 +19,7 @@ public class Alert {
 	private String eventTime;
 	private String title;
 	private AlertType type = AlertType.BASIC;
-
+	private Integer alertId;
 	
 
 //	public Alert(String desciption, Date eventTime, AlertType alertType,
@@ -37,10 +37,15 @@ public class Alert {
 		this.eventTime = eventTime;		
 		this.title= title;
 		this.link = link;
+		String id = link;
+		String pattern = "#([\\d]*)";
+		
+		//This might not work. 
+		setAlertId(new Integer(id.replaceAll(pattern, "$1"))); 
 		//this.link = link;
 	}
-
-
+	
+	
 
 	public String getLink() {
 		return link;
@@ -74,6 +79,18 @@ public class Alert {
 
 	public void setType(AlertType type) {
 		this.type = type;
+	}
+
+
+
+	public int getAlertId() {
+		return alertId;
+	}
+
+
+
+	public void setAlertId(int alertId) {
+		this.alertId = alertId;
 	}
 
 }
