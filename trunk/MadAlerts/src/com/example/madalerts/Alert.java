@@ -18,6 +18,7 @@ public class Alert {
 	private String description;
 	private String eventTime;
 	private String title;
+	private AlertType type = AlertType.BASIC;
 
 	
 
@@ -61,6 +62,18 @@ public class Alert {
 
 	public String getTitle() {
 		return title;
+	}
+
+
+
+	public AlertType getType() {
+		return type;
+	}
+
+
+
+	public void setType(AlertType type) {
+		this.type = type;
 	}
 
 }
