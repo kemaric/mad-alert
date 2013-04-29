@@ -4,7 +4,7 @@ public class WeatherAlert extends Alert{
 	
 	private Double latitude;
 	private Double longitude;
-	private Boolean hasLocation;
+	private boolean hasLocation;
 	
 	public WeatherAlert(String title, String link, String description,
 			String eventTime) {

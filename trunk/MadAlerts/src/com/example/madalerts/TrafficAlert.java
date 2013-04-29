@@ -4,7 +4,7 @@ public class TrafficAlert extends Alert{
 	
 	private String street1;
 	private String street2;
-	private Boolean hasLocation;
+	private boolean hasLocation;
 	
 	public TrafficAlert(String title, String link, String description,
 			String eventTime) {
@@ -39,7 +39,7 @@ public class TrafficAlert extends Alert{
 		this.street2 = street2;
 	}
 
-	public Boolean getHasLocation() {
+	public boolean getHasLocation() {
 		return hasLocation;
 	}
 

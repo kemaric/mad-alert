@@ -4,7 +4,7 @@ public class SafetyAlert extends Alert {
 	
 	private Double latitude;
 	private Double longitude;
-	private Boolean hasLocation;
+	private boolean hasLocation;
 	
 	
 	public SafetyAlert(String title, String link, String description,
@@ -44,7 +44,7 @@ public class SafetyAlert extends Alert {
 	}
 
 
-	public Boolean getHasLocation() {
+	public boolean getHasLocation() {
 		return hasLocation;
 	}
 
