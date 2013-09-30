@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.WebView;
@@ -24,7 +25,8 @@ public class EventsList extends Activity {
 	private ListView listView;
 	ArrayList<Alert> Alertlist;
 	private ArrayAdapter<String> adapter;
-	private ArrayList<String> list = new ArrayList<String>();
+	private ArrayAdapter<Alert> adapter2;
+	private ArrayList<String> titleList;
 	
 
 	@Override
@@ -40,16 +42,21 @@ public class EventsList extends Activity {
 		// Second parameter - Layout for the row
 		// Third parameter - ID of the TextView to which the data is written
 		// Forth - the Array of data
-
-		adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, android.R.id.text1, list);
 		
 		//get the titles of the alets
+		 ArrayList<String> list = new ArrayList<String>();
 		for (Alert a : Driver.Alertlist) {
 			list.add(a.getTitle());
 		}
+		titleList= list;
+//		adapter = new ArrayAdapter<String>(this,
+//				android.R.layout.simple_list_item_1, list);
 		
-		listView.setAdapter(adapter);
+		
+		adapter2 = new MyAlertAdapter(this,
+		R.layout.rss_feed_item, Driver.Alertlist);
+		
+		listView.setAdapter(adapter2);
 		listView.setOnItemClickListener(listView.getOnItemClickListener());
 		
 		
@@ -81,13 +88,13 @@ public class EventsList extends Activity {
 //	    super.onPause();  // Always call the superclass method first
 //	    finish();
 //	}
-	protected void onResume() {
-	    super.onResume();
-		for (Alert a : Driver.Alertlist) {
-			list.add(a.getTitle());
-		}
-	    adapter.notifyDataSetChanged();
-	}
+//	protected void onResume() {
+//	    super.onResume();
+//		for (Alert a : Driver.Alertlist) {
+//			list.add(a.getTitle());
+//		}
+//	    adapter.notifyDataSetChanged();
+//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

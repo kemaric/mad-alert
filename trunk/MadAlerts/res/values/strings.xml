@@ -3,32 +3,56 @@
 
     <string name="app_name">MadAlerts</string>
     <string name="action_settings">Settings</string>
-    <string name="alert_Url">https://alert.umd.edu/rssfeed.php</string>
+    <string name="alert_Url">http://terpconnect.umd.edu/~elysham/xml/testAlert.xml</string>
+
+    <!--
+    http://terpconnect.umd.edu/~elysham/xml/rssfeed.xml
+    string name="alert_Url">https://alert.umd.edu/rssfeed.php</string
+    -->
 
     <string-array name="weatherKeywords_array">
         <item>weather</item>
+        <item>thunderstorm</item>
+        <item>hail</item>
         <item>tornado</item>
         <item>flood</item>
-        <item>wind</item>
         <item>snow</item>
         <item>hurricane</item>
         <item>ice</item>
         <item>icy</item>
+        <item>National Weather Service</item>
     </string-array>
     <string-array name="violentKeywords_array">
-        <item >break</item>
-        <item >stalk</item>
-        <item >follow</item>
-        <item >harass</item>
+        <item>assault</item>
+        <item>assualt</item>
+        <item>fire</item>
+        <item>break</item>
+        <item>armed robbrery</item>
+        <item>handgun</item>
+        <item>gun</item>
+        <item>knife</item>
+        <item>weapon</item>
+        <item>stalk</item>
+        <item>follow</item>
+        <item>harass</item>
+        <item>robbery</item>
+        <item>armed</item>
+        <item>assualt</item>
+        <item>murder</item>
+        <item>shooting</item>
+        <item>shot</item>
+        <item>crime</item>
+        <item>fire</item>
+        <item>burnning</item>
     </string-array>
     <string-array name="nonViolentKeywords_array">
-        <item >robbery</item>
-        <item >assault</item>
-        <item >armed</item>
-        <item >assault</item>
-        <item >murder</item>
-        <item >shooting</item>
-        <item >shot</item>
+        <item>robbery</item>
+        <item>assault</item>
+        <item>armed</item>
+        <item>assault</item>
+        <item>murder</item>
+        <item>shooting</item>
+        <item>shot</item>
     </string-array>
 
     <string name="hello_world">Hello world!</string>
@@ -36,7 +60,7 @@
     <string name="title_activity_contact_info">ContactInfoActivity</string>
     <string name="aux_Number">Police Auxiliary: 301 405 3333</string>
     <string name="night_ride_number">Nite Ride: 301 314 6483</string>
-    <string name="police_number">Police: 911</string>
+    <string name="police_number"> Police EMERGENCY : 911</string>
     <string name="escort_number">Escort Number: 301 405 3555</string>
     <string name="crime_report">Crime Report: 301 405 3555</string>
 

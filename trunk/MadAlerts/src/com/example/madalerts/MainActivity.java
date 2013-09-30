@@ -1,11 +1,15 @@
 package com.example.madalerts;
 
 
+import java.util.ArrayList;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -19,20 +23,28 @@ public class MainActivity extends Activity {
 	private AsyncTask<Void, Integer, Void> task = null;
 
 	private Button btn;
+	
+	Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		context = this;
+		
+		Updater br = new Updater();
+	
+		br.setAlarm(context);
+		
 
 	}
 
 	public void onPause() {
 		super.onPause();  // Always call the superclass method first
-
-		if (task != null){//terminate the AsyncTask if it is still running
-			task.cancel(true);
-		}
+//
+//		if (task != null){//terminate the AsyncTask if it is still running
+//			task.cancel(true);
+//		}
 	}
 
 	@Override
@@ -113,6 +125,16 @@ public class MainActivity extends Activity {
 
 			if (feedValue == LOAD_NEW_ALERTS) {//
 				Driver.loadFeed(getString(R.string.alert_Url));
+				
+				ArrayList <Alert> newList = new ArrayList<Alert>();
+				
+				for (Alert alert : Driver.Alertlist){
+					alert = Analyzer.determineType(alert, context);
+					newList.add(alert);
+				}
+				Log.i("Alert", "Array size after parsing"+Driver.Alertlist.size());
+				Driver.Alertlist = newList;
+				Log.i("Alert", "Array size after analizing"+Driver.Alertlist.size());
 				// creates the list of alerts and stores it in a static ArrayList
 				Driver.LAST_LOAD = Driver.LOAD_FROM_RSS;
 

@@ -37,11 +37,8 @@ public class Alert {
 		this.eventTime = eventTime;		
 		this.title= title;
 		this.link = link;
-		String id = link;
-		String pattern = "#([\\d]*)";
-		
-		//This might not work. 
-		setAlertId(new Integer(id.replaceAll(pattern, "$1"))); 
+		 
+		setAlertId(new Integer(link.split("#")[1])); //split link on '#' and create integer with trailing numbers
 		//this.link = link;
 	}
 	

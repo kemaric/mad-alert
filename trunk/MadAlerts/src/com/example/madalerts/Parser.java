@@ -50,14 +50,15 @@ public class Parser  {
 			is = xmlURL.openStream();
 			String xmlString = convertStreamToString(is);
 			Document result = XMLfromString(xmlString);
-			 is.close(); 
+			is.close(); 
 			return result;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 
-		return null;
+		
 	}
 
 

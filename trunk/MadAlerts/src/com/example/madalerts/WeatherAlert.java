@@ -18,6 +18,7 @@ public class WeatherAlert extends Alert{
 	public WeatherAlert(Alert alert) {
 		super(alert.getTitle(), alert.getLink(), 
 				alert.getDescription(), alert.getEventTime());
+		super.setType(AlertType.WEATHER);
 		latitude = null;
 		longitude = null;
 		hasLocation = false;
