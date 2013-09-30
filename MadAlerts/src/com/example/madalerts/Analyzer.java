@@ -1,6 +1,8 @@
 package com.example.madalerts;
 
+import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 
 //package com.example.madalerts;
 //
@@ -141,55 +143,88 @@ import android.content.res.Resources;
 //	}
 //}
 
-public class Analyzer {
-	
-	public Alert determineType(Alert alert) {
-		String alertDescription = alert.getDescription();
-		String[] weather = Resources.getSystem().getStringArray(R.array.weatherKeywords_array);
+public final class Analyzer {
+
+	static Context cntx;
+
+	public static Alert determineType(Alert alert, Context c) {
+		cntx = c;
+		String alertDescription = alert.getDescription().toLowerCase();
+
+		String[] weather = c.getResources().getStringArray(
+				R.array.weatherKeywords_array);
 		String traffic = "traffic";
-		String[] violent = Resources.getSystem().getStringArray(R.array.violentKeywords_array);
-		
-		if(alertDescription.contains(traffic) 
+		String[] violent = c.getResources().getStringArray(
+				R.array.violentKeywords_array);
+
+		if (alertDescription.contains(traffic)
 				|| alertDescription.contains("Traffic")) {
 			return new TrafficAlert(alert);
 		}
-		
-		for(int i = 0; i < weather.length; i++) {
-			if(alertDescription.contains(weather[i])) {
+
+		for (int i = 0; i < violent.length; i++) {
+			// Log.i("Alert",
+			// alertDescription+":searching violent keywords"+violent[i]);
+			if (alertDescription.contains(violent[i])) {
+				// Log.i("Alert", "creating safty alert object");
+
+				SafetyAlert saftyAlert = new SafetyAlert(alert);
+
+				return analyzeSafetyAlert(saftyAlert);
+			}
+		}
+
+		for (int i = 0; i < weather.length; i++) {
+			if (alertDescription.contains(weather[i])) {
 				return new WeatherAlert(alert);
 			}
 		}
-		
-		for(int i = 0; i < violent.length; i++) {
-			if(alertDescription.contains(violent[i])) {
-				return new SafetyAlert(alert);
-			}
-		}
-		
-		//if it doesnt match any type...
+
+		// if it doesnt match any type...
 		return alert;
 	}
-	
-//	public Alert setLocation(Alert alert) {
-//		if(alert instanceof WeatherAlert) {
-//			return alert;
-//		}
-//		
-//		//after this figure out how to add a location to the other types of alert
-//		
-//		
-//	}
-//	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	// public Alert setLocation(Alert alert) {
+	// if(alert instanceof WeatherAlert) {
+	// return alert;
+	// }
+	//
+	// //after this figure out how to add a location to the other types of alert
+	//
+	//
+	// }
+	//
+
+	private static Alert analyzeTrafficAlert(TrafficAlert alert) {
+		return alert;
+
+	}
+
+	private static Alert analyzeWeatherAlert(WeatherAlert alert) {
+
+		return alert;
+
+	}
+
+	private static Alert analyzeSafetyAlert(SafetyAlert alert) {
+
+		String[] buildingNames = cntx.getResources().getStringArray(
+				R.array.bldg_names);
+
+		String alertDescription = alert.getDescription().toLowerCase();
+
+		for (int i = 0; i < buildingNames.length; i++) {
+			if (alertDescription.contains(buildingNames[i].toLowerCase())) {
+				String[] buildingLocations = cntx.getResources()
+						.getStringArray(R.array.bldg_location);
+				alert.setLocationDescription(buildingNames[i]);
+				alert.setLocation(buildingLocations[i]);
+				alert.setHasLocation(true);
+				break;
+			}
+
+		}
+		return alert;
+	}
+
 }

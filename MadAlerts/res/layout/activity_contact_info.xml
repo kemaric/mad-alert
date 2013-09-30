@@ -4,49 +4,62 @@
     android:layout_height="match_parent"
     tools:context=".ContactInfoActivity" >
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
     <TextView
         android:id="@+id/crimeReport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/night_ride"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginBottom="121dp"
         android:text="@string/crime_report" />
+
+    <TextView
+        android:id="@+id/escort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/crimeReport"
+        android:layout_centerHorizontal="true"
+        android:text="@string/escort_number" />
 
     <TextView
         android:id="@+id/auxiliary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/escort"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
+        android:layout_above="@+id/escort"
+        android:layout_centerHorizontal="true"
         android:text="@string/aux_Number" />
 
     <TextView
         android:id="@+id/police"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/auxiliary"
+        android:layout_above="@+id/auxiliary"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
         android:text="@string/police_number" />
 
     <TextView
         android:id="@+id/night_ride"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/police"
+        android:layout_above="@+id/police"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
         android:text="@string/night_ride_number" />
 
-    <TextView
-        android:id="@+id/escort"
+    <Button
+        android:id="@+id/dial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/crimeReport"
-        android:layout_below="@+id/crimeReport"
-        android:layout_marginTop="25dp"
-        android:text="@string/escort_number" />
-    
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/spinner"
+        android:layout_marginTop="14dp"
+        android:onClick="OnClickDial"
+        android:text="CALL" />
+
 </RelativeLayout>

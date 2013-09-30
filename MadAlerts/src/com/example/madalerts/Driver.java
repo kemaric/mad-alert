@@ -24,6 +24,7 @@ public final class Driver {
 	public static ArrayList<Alert>  loadFeed(String urlString) {
 
 		Document dom =  Parser.XMLfromURL(urlString);
+		if (dom !=null){
 		Element root = dom.getDocumentElement();
 		NodeList alertList = root.getElementsByTagName("item");
 
@@ -34,15 +35,17 @@ public final class Driver {
 		for (int i = 0; i < alertList.getLength(); i++) {
 			// String[] d = Parser.getTimeAndDescription(root, i);
 			AlertInfo = (HashMap<String, String>) Parser.getAlertInfo(root, i);
-			Alertlist.add(CreateAlertObject(AlertInfo));
+			Alert alert = CreateAlertObject(AlertInfo);
+			Alertlist.add(alert);
 
 			// list.add(chop(d[1]));
 
 			// NamedNodeMap pList = alertList.item(i).getAttributes();
 			// list.add(pList.getNamedItem("description").getNodeValue());
 		}
-
+		}
 		return Alertlist ;
+		
 	}
 
 	public static Alert CreateAlertObject(HashMap<String, String> AlertInfo) {

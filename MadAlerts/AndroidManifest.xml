@@ -51,6 +51,10 @@
             android:name="com.example.madalerts.ContactInfoActivity"
             android:label="@string/title_activity_contact_info" >
         </activity>
+        
+        <receiver
+            android:name="Updater" >
+        </receiver>
     </application>
 
 </manifest>

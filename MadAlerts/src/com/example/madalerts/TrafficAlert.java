@@ -18,6 +18,7 @@ public class TrafficAlert extends Alert{
 	public TrafficAlert(Alert alert) {
 		super(alert.getTitle(), alert.getLink(), 
 				alert.getDescription(), alert.getEventTime());
+		super.setType(AlertType.TRAFFIC);
 		street1 = null;
 		street2 = null;
 		hasLocation = false;

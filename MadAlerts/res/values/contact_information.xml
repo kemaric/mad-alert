@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="contact_names">
+        <item>Police Auxiliary</item>
+        <item>Nite Ride</item>
+        <item>Escort Number</item>
+        <item>Crime Report</item>
+    </string-array>
+    
+        <string-array name="contact_numbers">
+        <item>3014053333</item>
+        <item>3013146483</item>
+        <item>3014053555</item>
+        <item>301405355</item>
+    </string-array>
+    
+</resources>
