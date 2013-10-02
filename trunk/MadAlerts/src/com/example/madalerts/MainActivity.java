@@ -110,9 +110,12 @@ public class MainActivity extends Activity {
 		btn = (Button) findViewById(R.id.savedAlerts);
 		btn.setClickable(false);
 		
+		if(Driver.Alertlist != null && Driver.Alertlist.size()>0){
+			startList();
+		}else{
 		feedValue = LOAD_NEW_ALERTS; //used in the AsyncTask to see what button was clicked
 		task = new CreateAlerts().execute();//run the AsyncTask
-
+		}
 	}
 
 	// creates a new thread so the UI thread is free
