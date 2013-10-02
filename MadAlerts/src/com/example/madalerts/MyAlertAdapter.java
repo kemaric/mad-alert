@@ -1,6 +1,7 @@
 package com.example.madalerts;
 import java.util.ArrayList;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.LayoutInflater.Filter;
 import android.view.View;
@@ -32,12 +33,27 @@ public class MyAlertAdapter extends ArrayAdapter<Alert>  {
            
             TextView title = (TextView) view.findViewById(R.id.title);
             ImageView image = (ImageView) view.findViewById(R.id.image);
+            Drawable img ;
             if (item != null) {
             	title.setText(item.getTitle());
             
             switch (item.getType()){
             case SAFETY: 
-            	title.setBackgroundColor(0xfff00000); // red  
+            	title.setBackgroundColor(0xfff00000); // red 
+            	// img = context.getResources().getDrawable(R.drawable.safty_alert);
+             	image.setImageResource(R.drawable.safty_alert);
+
+            	break;
+            	case WEATHER:
+            		title.setBackgroundColor(0xfff00000); // red 
+                	
+                	image.setImageResource(R.drawable.weather_alert);
+				break;
+			default:
+            	image.setImageResource(R.drawable.default_alert);
+
+				break;
+            	
             }
             	
                 

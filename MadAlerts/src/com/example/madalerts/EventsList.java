@@ -24,9 +24,9 @@ public class EventsList extends Activity {
 
 	private ListView listView;
 	ArrayList<Alert> Alertlist;
-	private ArrayAdapter<String> adapter;
+	//private ArrayAdapter<String> adapter;
 	private ArrayAdapter<Alert> adapter2;
-	private ArrayList<String> titleList;
+	//private ArrayList<String> titleList;
 	
 
 	@Override
@@ -44,17 +44,18 @@ public class EventsList extends Activity {
 		// Forth - the Array of data
 		
 		//get the titles of the alets
-		 ArrayList<String> list = new ArrayList<String>();
-		for (Alert a : Driver.Alertlist) {
-			list.add(a.getTitle());
-		}
-		titleList= list;
+//		 ArrayList<String> list = new ArrayList<String>();
+//		for (Alert a : Driver.Alertlist) {
+//			list.add(a.getTitle());
+//		}
+//		titleList= list;
 //		adapter = new ArrayAdapter<String>(this,
 //				android.R.layout.simple_list_item_1, list);
 		
 		
 		adapter2 = new MyAlertAdapter(this,
 		R.layout.rss_feed_item, Driver.Alertlist);
+		
 		
 		listView.setAdapter(adapter2);
 		listView.setOnItemClickListener(listView.getOnItemClickListener());
@@ -79,11 +80,14 @@ public class EventsList extends Activity {
 	        }
 
 		
+	  
 	    });
+		
+	
 
 	}
 
-	
+
 //	public void onPause() {
 //	    super.onPause();  // Always call the superclass method first
 //	    finish();
