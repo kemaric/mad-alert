@@ -51,7 +51,8 @@ public class MyAlertAdapter extends ArrayAdapter<Alert>  {
 				break;
 			default:
             	image.setImageResource(R.drawable.default_alert);
-
+            	
+            	/* This is a comment. */
 				break;
             	
             }
