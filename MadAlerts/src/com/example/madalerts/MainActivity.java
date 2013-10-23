@@ -20,7 +20,6 @@ public class MainActivity extends Activity {
 	private int feedValue = 0; // this is how will will keep track of which button the user pressed
 
 	private boolean resumeHasRun = false;
-	private AsyncTask<Void, Integer, Void> task = null;
 
 	private Button btn;
 	
@@ -32,10 +31,10 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		context = this;
 		
-		Updater br = new Updater();
-	
-		br.setAlarm(context);
-		
+//		Updater br = new Updater();
+//	
+//		br.setAlarm(context);
+//		
 
 	}
 
@@ -114,7 +113,7 @@ public class MainActivity extends Activity {
 			startList();
 		}else{
 		feedValue = LOAD_NEW_ALERTS; //used in the AsyncTask to see what button was clicked
-		task = new CreateAlerts().execute();//run the AsyncTask
+		new CreateAlerts().execute();//run the AsyncTask
 		}
 	}
 
@@ -125,6 +124,10 @@ public class MainActivity extends Activity {
 		@Override
 		//
 		protected Void doInBackground(Void... params) {
+			Updater br = new Updater();
+			
+			br.setAlarm(context);
+			
 
 			if (feedValue == LOAD_NEW_ALERTS) {//
 				Driver.loadFeed(getString(R.string.alert_Url));

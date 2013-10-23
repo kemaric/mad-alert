@@ -26,7 +26,7 @@ public class SplashScreen extends Activity {
 		Thread timer = new Thread() {
 			public void run() {
 				try {
-					
+
 					sleep(5000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -37,9 +37,9 @@ public class SplashScreen extends Activity {
 				}
 			}
 		};
-		
+
 		timer.start();
-		
+
 	}
 
 	/**
@@ -51,8 +51,8 @@ public class SplashScreen extends Activity {
 		// TODO Auto-generated method stub
 		super.onPause();
 		finish();/*
-				 * pretty much kills this activity as soon as the 5 seconds is
-				 * over
-				 */
+		 * pretty much kills this activity as soon as the 5 seconds is
+		 * over
+		 */
 	}
 }
