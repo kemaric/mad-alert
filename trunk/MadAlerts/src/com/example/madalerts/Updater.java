@@ -3,11 +3,15 @@ package com.example.madalerts;
 import java.util.ArrayList;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 public class Updater extends BroadcastReceiver{
@@ -17,7 +21,7 @@ public class Updater extends BroadcastReceiver{
 	private final long duration = 1*1000*10; //10 sec
 	private static int count = 0 ;
 
-
+	
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
@@ -38,10 +42,12 @@ public class Updater extends BroadcastReceiver{
 			alert = Analyzer.determineType(alert, context);
 			newList.add(alert);
 		}
-		Driver.Alertlist = newList;
+		
 		if (Driver.Alertlist!= null && newList!= null){
+			
+			
 			if (Driver.Alertlist.size()!=newList.size()){
-				
+						
 
 				text = "list has updated at "+ count;
 				toast = Toast.makeText(context, text, show);
@@ -50,12 +56,14 @@ public class Updater extends BroadcastReceiver{
 			}
 		}
 		
+		Driver.Alertlist = newList;
 
 		// creates the list of alerts and stores it in a static ArrayList
 
 
 	}
-
+	
+	
 	public void setAlarm(Context context){
 		AlarmManager am = (AlarmManager)context.getSystemService(context.ALARM_SERVICE);
 		Intent i = new Intent(context, Updater.class);
