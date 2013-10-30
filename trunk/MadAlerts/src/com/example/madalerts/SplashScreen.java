@@ -38,8 +38,11 @@ public class SplashScreen extends Activity {
 			}
 		};
 
-		timer.start();
-
+		//timer.start();
+		
+		
+		Intent mainActivity = new Intent(this,MainActivity.class);
+		startActivity(mainActivity);
 	}
 
 	/**

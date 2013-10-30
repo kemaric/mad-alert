@@ -25,51 +25,51 @@ public class Updater extends BroadcastReceiver{
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
-		count ++;
-		CharSequence text = "Hello toast! "+ count;
-		int show = Toast.LENGTH_SHORT;
-		Toast toast = Toast.makeText(context, text, show);
-		toast.show();
-		serviceTag= "Alert";
-		Log.d(serviceTag, "Service onRecive");
-
-
-		Driver.loadFeed(context.getString(R.string.alert_Url));
-
-		ArrayList <Alert> newList = new ArrayList<Alert>();
-
-		for (Alert alert : Driver.Alertlist){
-			alert = Analyzer.determineType(alert, context);
-			newList.add(alert);
-		}
-		
-		if (Driver.Alertlist!= null && newList!= null){
-			
-			
-			if (Driver.Alertlist.size()!=newList.size()){
-						
-
-				text = "list has updated at "+ count;
-				toast = Toast.makeText(context, text, show);
-				toast.show();
-
-			}
-		}
-		
-		Driver.Alertlist = newList;
-
-		// creates the list of alerts and stores it in a static ArrayList
+//		count ++;
+//		CharSequence text = "Hello toast! "+ count;
+//		int show = Toast.LENGTH_SHORT;
+//		Toast toast = Toast.makeText(context, text, show);
+//		toast.show();
+//		serviceTag= "Alert";
+//		Log.d(serviceTag, "Service onRecive");
+//
+//
+//		Driver.loadFeed(context.getString(R.string.alert_Url));
+//
+//		ArrayList <Alert> newList = new ArrayList<Alert>();
+//
+//		for (Alert alert : Driver.Alertlist){
+//			alert = Analyzer.determineType(alert, context);
+//			newList.add(alert);
+//		}
+//		
+//		if (Driver.Alertlist!= null && newList!= null){
+//			
+//			
+//			if (Driver.Alertlist.size()!=newList.size()){
+//						
+//
+//				text = "list has updated at "+ count;
+//				toast = Toast.makeText(context, text, show);
+//				toast.show();
+//
+//			}
+//		}
+//		
+//		Driver.Alertlist = newList;
+//
+//		// creates the list of alerts and stores it in a static ArrayList
 
 
 	}
 	
 	
 	public void setAlarm(Context context){
-		AlarmManager am = (AlarmManager)context.getSystemService(context.ALARM_SERVICE);
-		Intent i = new Intent(context, Updater.class);
-		PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
+		//AlarmManager am = (AlarmManager)context.getSystemService(context.ALARM_SERVICE);
+		//Intent i = new Intent(context, Updater.class);
+		//PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
 		// duration = 5*1000*60;
-		am.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, duration, duration, pi);
+		//am.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, duration, duration, pi);
 	}
 
 	public void cancelAlarm(Context context){

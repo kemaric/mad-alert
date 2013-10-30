@@ -124,9 +124,9 @@ public class MainActivity extends Activity {
 		@Override
 		//
 		protected Void doInBackground(Void... params) {
-			Updater br = new Updater();
+			//Updater br = new Updater();
 			
-			br.setAlarm(context);
+		//	br.setAlarm(context);
 			
 
 			if (feedValue == LOAD_NEW_ALERTS) {//
